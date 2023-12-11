@@ -243,6 +243,10 @@ async def create_polls(_, message):
 async def votingg(_, query):
     user_di = query.from_user.id
     chat_id = query.message.chat.id
+    try:
+        await add_served_channel(chat_id)
+    except Exception as lol:
+        print(lol)
     message_id = query.message.id
     msg = await app.get_messages(chat_id, message_id)
     message_date = str(msg.date)[8:10]
